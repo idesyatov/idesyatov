@@ -1,0 +1,8 @@
+# temporary render previews
+assets/_*.png
+assets/_*.svg
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.swp
