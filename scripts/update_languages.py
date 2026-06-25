@@ -8,7 +8,9 @@ repositories via the GitHub REST API, then rewrites the bar chart between the
 import os
 import re
 import json
+import time
 import urllib.request
+import urllib.error
 
 USER = os.environ.get("GH_USER", "idesyatov")
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -18,6 +20,10 @@ TOP = 5          # how many languages to show
 BAR = 15         # bar length in characters
 NAMEPAD = 11     # width of the language-name column
 Y0, STEP = 322, 24
+
+RETRIES = 3      # attempts per request before giving up
+BACKOFF = 5      # seconds, multiplied by attempt number
+RETRY_CODES = {403, 429, 500, 502, 503, 504}
 
 # linguist colors for common languages; anything else falls back to DEFAULT
 COLORS = {
@@ -36,8 +42,17 @@ def api(url):
                                                "User-Agent": "lang-stats"})
     if TOKEN:
         req.add_header("Authorization", "Bearer " + TOKEN)
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.load(r)
+    for attempt in range(1, RETRIES + 1):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as r:
+                return json.load(r)
+        except urllib.error.HTTPError as e:
+            if e.code not in RETRY_CODES or attempt == RETRIES:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            if attempt == RETRIES:
+                raise
+        time.sleep(BACKOFF * attempt)
 
 
 def get_repos():
@@ -85,7 +100,11 @@ def build_block(agg):
 
 
 def main():
-    agg = aggregate()
+    try:
+        agg = aggregate()
+    except (urllib.error.URLError, TimeoutError, ValueError) as e:
+        print(f"failed to fetch language data ({e}); leaving SVG unchanged")
+        return
     if not agg:
         print("no languages found, leaving SVG unchanged")
         return
