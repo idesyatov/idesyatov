@@ -24,13 +24,13 @@
 
   <!-- info -->
   <text x="230" font-size="15" xml:space="preserve">
-    <tspan x="230" y="94" fill="#bb9af7" font-weight="bold">idesyatov@github</tspan>
+    <a href="https://idesyatov.github.io/" target="_blank"><tspan x="230" y="94" fill="#bb9af7" font-weight="bold" text-decoration="underline">idesyatov.github.io</tspan></a>
     <tspan x="230" y="116" fill="#565f89">--------------------------------</tspan>
     <tspan x="230" y="138"><tspan fill="#7aa2f7" font-weight="bold">OS:        </tspan><tspan fill="#c0caf5">Unix-like</tspan></tspan>
     <tspan x="230" y="160"><tspan fill="#7aa2f7" font-weight="bold">Focus:     </tspan><tspan fill="#c0caf5">DevOps · SRE · Cloud Native</tspan></tspan>
-    <tspan x="230" y="182"><tspan fill="#7aa2f7" font-weight="bold">Interests: </tspan><tspan fill="#c0caf5">platform engineering · GitOps</tspan></tspan>
+    <tspan x="230" y="182"><tspan fill="#7aa2f7" font-weight="bold">Interests: </tspan><tspan fill="#c0caf5">Solutions Architecture &amp; Development</tspan></tspan>
     <tspan x="230" y="204"><tspan fill="#7aa2f7" font-weight="bold">           </tspan><tspan fill="#c0caf5">reliability · scalability</tspan></tspan>
-    <tspan x="230" y="226"><tspan fill="#7aa2f7" font-weight="bold">Exploring: </tspan><tspan fill="#c0caf5">AI agents · LLMOps</tspan></tspan>
+    <tspan x="230" y="226"><tspan fill="#7aa2f7" font-weight="bold">Exploring: </tspan><tspan fill="#c0caf5">AI · LLMs · agent orchestration</tspan></tspan>
   </text>
 
   <!-- ============ languages ============ -->
