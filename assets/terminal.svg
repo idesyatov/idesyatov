@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="820" height="564" viewBox="0 0 820 564" font-family="'JetBrains Mono','Fira Code','DejaVu Sans Mono','Courier New',monospace">
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="542" viewBox="0 0 820 542" font-family="'JetBrains Mono','Fira Code','DejaVu Sans Mono','Courier New',monospace">
   <!-- window -->
-  <rect x="1" y="1" width="818" height="562" rx="12" fill="#1a1b26" stroke="#414868" stroke-width="1.5"/>
+  <rect x="1" y="1" width="818" height="540" rx="12" fill="#1a1b26" stroke="#414868" stroke-width="1.5"/>
   <!-- title bar -->
   <path d="M1,36 V13 Q1,1 13,1 H807 Q819,1 819,13 V36 Z" fill="#24283b"/>
   <circle cx="24" cy="18" r="6" fill="#ff5f56"/>
@@ -31,44 +31,43 @@
     <tspan x="230" y="182"><tspan fill="#7aa2f7" font-weight="bold">Interests: </tspan><tspan fill="#c0caf5">platform engineering · GitOps</tspan></tspan>
     <tspan x="230" y="204"><tspan fill="#7aa2f7" font-weight="bold">           </tspan><tspan fill="#c0caf5">reliability · scalability</tspan></tspan>
     <tspan x="230" y="226"><tspan fill="#7aa2f7" font-weight="bold">Exploring: </tspan><tspan fill="#c0caf5">AI agents · LLMOps</tspan></tspan>
-    <tspan x="230" y="248"><tspan fill="#7aa2f7" font-weight="bold">Editor:    </tspan><tspan fill="#c0caf5">Vim · tmux</tspan></tspan>
   </text>
 
   <!-- ============ languages ============ -->
-  <text x="24" y="294" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ cat languages</tspan></text>
+  <text x="24" y="272" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ cat languages</tspan></text>
 
   <text x="40" font-size="15" xml:space="preserve">
 <!-- LANGS:START -->
-    <tspan x="40" y="322"><tspan fill="#c0caf5">Go         </tspan><tspan fill="#00ADD8">███████████████</tspan><tspan fill="#414868"></tspan><tspan fill="#565f89"> 73%</tspan></tspan>
-    <tspan x="40" y="346"><tspan fill="#c0caf5">TypeScript </tspan><tspan fill="#3178c6">██</tspan><tspan fill="#414868">░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 8%</tspan></tspan>
-    <tspan x="40" y="370"><tspan fill="#c0caf5">Shell      </tspan><tspan fill="#89e051">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
-    <tspan x="40" y="394"><tspan fill="#c0caf5">Rust       </tspan><tspan fill="#dea584">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
-    <tspan x="40" y="418"><tspan fill="#c0caf5">Nix        </tspan><tspan fill="#9aa5ce">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 4%</tspan></tspan>
+    <tspan x="40" y="300"><tspan fill="#c0caf5">Go         </tspan><tspan fill="#00ADD8">███████████████</tspan><tspan fill="#414868"></tspan><tspan fill="#565f89"> 73%</tspan></tspan>
+    <tspan x="40" y="324"><tspan fill="#c0caf5">TypeScript </tspan><tspan fill="#3178c6">██</tspan><tspan fill="#414868">░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 8%</tspan></tspan>
+    <tspan x="40" y="348"><tspan fill="#c0caf5">Shell      </tspan><tspan fill="#89e051">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
+    <tspan x="40" y="372"><tspan fill="#c0caf5">Rust       </tspan><tspan fill="#dea584">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
+    <tspan x="40" y="396"><tspan fill="#c0caf5">Nix        </tspan><tspan fill="#9aa5ce">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 4%</tspan></tspan>
 <!-- LANGS:END -->
   </text>
 
   <!-- code stats (right of languages) -->
   <text x="430" font-size="15" xml:space="preserve">
 <!-- STATS:START -->
-    <tspan x="430" y="322"><tspan fill="#565f89">languages</tspan><tspan x="620" fill="#c0caf5">14</tspan></tspan>
-    <tspan x="430" y="346"><tspan fill="#565f89">Σ code</tspan><tspan x="620" fill="#c0caf5">451 KB</tspan></tspan>
-    <tspan x="430" y="370"><tspan fill="#565f89">commits 2026</tspan><tspan x="620" fill="#c0caf5">129</tspan></tspan>
-    <tspan x="430" y="394"><tspan fill="#565f89">PRs</tspan><tspan x="620" fill="#c0caf5">55</tspan></tspan>
-    <tspan x="430" y="418"><tspan fill="#565f89">last push</tspan><tspan x="620" fill="#c0caf5">1d ago</tspan></tspan>
+    <tspan x="430" y="300"><tspan fill="#565f89">languages</tspan><tspan x="620" fill="#c0caf5">14</tspan></tspan>
+    <tspan x="430" y="324"><tspan fill="#565f89">Σ code</tspan><tspan x="620" fill="#c0caf5">451 KB</tspan></tspan>
+    <tspan x="430" y="348"><tspan fill="#565f89">commits 2026</tspan><tspan x="620" fill="#c0caf5">129</tspan></tspan>
+    <tspan x="430" y="372"><tspan fill="#565f89">PRs</tspan><tspan x="620" fill="#c0caf5">55</tspan></tspan>
+    <tspan x="430" y="396"><tspan fill="#565f89">last push</tspan><tspan x="620" fill="#c0caf5">1d ago</tspan></tspan>
 <!-- STATS:END -->
   </text>
 
   <!-- ============ stack ============ -->
-  <text x="24" y="460" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ cat stack</tspan></text>
+  <text x="24" y="438" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ cat stack</tspan></text>
 
   <text x="40" font-size="15" xml:space="preserve">
-    <tspan x="40" y="488" fill="#73daca">Docker · Kubernetes · Terraform · Ansible · CI/CD</tspan>
-    <tspan x="40" y="510" fill="#73daca">Prometheus · Grafana · Linux · Git · Networking</tspan>
+    <tspan x="40" y="466" fill="#73daca">Docker · Kubernetes · Terraform · Ansible · CI/CD</tspan>
+    <tspan x="40" y="488" fill="#73daca">Prometheus · Grafana · Linux · Git · Networking</tspan>
   </text>
 
   <!-- prompt + cursor -->
-  <text x="24" y="542" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ </tspan></text>
-  <rect x="200" y="530" width="9" height="16" fill="#c0caf5">
+  <text x="24" y="520" font-size="15"><tspan fill="#9ece6a" font-weight="bold">idesyatov@github</tspan><tspan fill="#c0caf5">:</tspan><tspan fill="#7aa2f7">~</tspan><tspan fill="#c0caf5">$ </tspan></text>
+  <rect x="200" y="508" width="9" height="16" fill="#c0caf5">
     <animate attributeName="opacity" values="1;1;0;0" dur="1.1s" repeatCount="indefinite"/>
   </rect>
 </svg>

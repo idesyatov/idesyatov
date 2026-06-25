@@ -22,7 +22,7 @@ SVG = os.path.join(os.path.dirname(__file__), "..", "assets", "terminal.svg")
 TOP = 5          # how many languages to show
 BAR = 15         # bar length in characters
 NAMEPAD = 11     # width of the language-name column
-Y0, STEP = 322, 24
+Y0, STEP = 300, 24
 
 SX = 430         # x of the stats panel labels
 SVALX = 620      # x of the stats panel values
