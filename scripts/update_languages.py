@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Update the languages block in assets/terminal.svg with real top languages.
+"""Update the languages and stats blocks in assets/terminal.svg.
 
 Aggregates byte counts across the user's public (non-fork, non-archived)
 repositories via the GitHub REST API, then rewrites the bar chart between the
-<!-- LANGS:START --> / <!-- LANGS:END --> markers. Standard library only.
+<!-- LANGS:START --> / <!-- LANGS:END --> markers and the side panel between
+the <!-- STATS:START --> / <!-- STATS:END --> markers. Standard library only.
 """
 import os
 import re
 import json
 import time
+import urllib.parse
 import urllib.request
 import urllib.error
+from datetime import datetime, timezone
 
 USER = os.environ.get("GH_USER", "idesyatov")
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -20,6 +23,9 @@ TOP = 5          # how many languages to show
 BAR = 15         # bar length in characters
 NAMEPAD = 11     # width of the language-name column
 Y0, STEP = 322, 24
+
+SX = 430         # x of the stats panel labels
+SVALX = 620      # x of the stats panel values
 
 RETRIES = 3      # attempts per request before giving up
 BACKOFF = 5      # seconds, multiplied by attempt number
@@ -67,14 +73,73 @@ def get_repos():
     return repos
 
 
-def aggregate():
+def aggregate(repos):
     agg = {}
-    for repo in get_repos():
+    for repo in repos:
         if repo.get("fork") or repo.get("archived"):
             continue
         for lang, b in api(repo["languages_url"]).items():
             agg[lang] = agg.get(lang, 0) + b
     return agg
+
+
+def replace_marker(svg, name, value):
+    return re.sub(
+        rf"(<!-- {name}:START -->).*?(<!-- {name}:END -->)",
+        lambda m: m.group(1) + value + m.group(2),
+        svg, flags=re.S,
+    )
+
+
+def fmt_bytes(n):
+    if n < 1024:
+        return f"{n} B"
+    if n < 1024 ** 2:
+        return f"{round(n / 1024)} KB"
+    return f"{n / 1024 ** 2:.1f} MB"
+
+
+def rel_push(repos):
+    times = [r["pushed_at"] for r in repos
+             if not r.get("fork") and r.get("name") != USER]
+    if not times:
+        return "—"
+    dt = datetime.strptime(max(times), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    days = (datetime.now(timezone.utc) - dt).days
+    if days <= 0:
+        return "today"
+    if days < 7:
+        return f"{days}d ago"
+    if days < 30:
+        return f"{days // 7}w ago"
+    if days < 365:
+        return f"{days // 30}mo ago"
+    return f"{days // 365}y ago"
+
+
+def search_count(kind, query):
+    url = f"https://api.github.com/search/{kind}?q={urllib.parse.quote(query)}&per_page=1"
+    return api(url).get("total_count", 0)
+
+
+def build_stats(repos, agg):
+    year = datetime.now(timezone.utc).year
+    rows = [
+        ("languages", str(len(agg))),
+        ("Σ code", fmt_bytes(sum(agg.values()))),
+        (f"commits {year}", str(search_count("commits", f"author:{USER} committer-date:>={year}-01-01"))),
+        ("PRs", str(search_count("issues", f"type:pr author:{USER}"))),
+        ("last push", rel_push(repos)),
+    ]
+    lines = []
+    for i, (label, val) in enumerate(rows):
+        y = Y0 + STEP * i
+        lines.append(
+            f'    <tspan x="{SX}" y="{y}">'
+            f'<tspan fill="#565f89">{label}</tspan>'
+            f'<tspan x="{SVALX}" fill="#c0caf5">{val}</tspan></tspan>'
+        )
+    return "\n" + "\n".join(lines) + "\n"
 
 
 def build_block(agg):
@@ -99,26 +164,37 @@ def build_block(agg):
     return "\n".join(lines)
 
 
+NET_ERRORS = (urllib.error.URLError, TimeoutError, ValueError, KeyError)
+
+
 def main():
-    try:
-        agg = aggregate()
-    except (urllib.error.URLError, TimeoutError, ValueError) as e:
-        print(f"failed to fetch language data ({e}); leaving SVG unchanged")
-        return
-    if not agg:
-        print("no languages found, leaving SVG unchanged")
-        return
-    block = build_block(agg)
     with open(SVG, encoding="utf-8") as f:
-        svg = f.read()
-    new = re.sub(
-        r"(<!-- LANGS:START -->).*?(<!-- LANGS:END -->)",
-        lambda m: m.group(1) + "\n" + block + "\n" + m.group(2),
-        svg, flags=re.S,
-    )
-    with open(SVG, "w", encoding="utf-8") as f:
-        f.write(new)
-    print(f"updated {block.count('<tspan x=')} languages")
+        svg = original = f.read()
+
+    try:
+        repos = get_repos()
+        agg = aggregate(repos)
+    except NET_ERRORS as e:
+        print(f"failed to fetch repositories ({e}); leaving SVG unchanged")
+        return
+
+    if agg:
+        svg = replace_marker(svg, "LANGS", "\n" + build_block(agg) + "\n")
+        print(f"updated {len(agg)} languages")
+    else:
+        print("no languages found, leaving languages unchanged")
+
+    try:
+        svg = replace_marker(svg, "STATS", build_stats(repos, agg))
+        print("updated stats panel")
+    except NET_ERRORS as e:
+        print(f"failed to build stats ({e}); leaving stats unchanged")
+
+    if svg != original:
+        with open(SVG, "w", encoding="utf-8") as f:
+            f.write(svg)
+    else:
+        print("nothing changed")
 
 
 if __name__ == "__main__":
