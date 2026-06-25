@@ -13,7 +13,7 @@ import time
 import urllib.parse
 import urllib.request
 import urllib.error
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 USER = os.environ.get("GH_USER", "idesyatov")
 TOKEN = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
@@ -99,37 +99,20 @@ def fmt_bytes(n):
     return f"{n / 1024 ** 2:.1f} MB"
 
 
-def rel_push(repos):
-    times = [r["pushed_at"] for r in repos
-             if not r.get("fork") and r.get("name") != USER]
-    if not times:
-        return "—"
-    dt = datetime.strptime(max(times), "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    days = (datetime.now(timezone.utc) - dt).days
-    if days <= 0:
-        return "today"
-    if days < 7:
-        return f"{days}d ago"
-    if days < 30:
-        return f"{days // 7}w ago"
-    if days < 365:
-        return f"{days // 30}mo ago"
-    return f"{days // 365}y ago"
-
-
 def search_count(kind, query):
     url = f"https://api.github.com/search/{kind}?q={urllib.parse.quote(query)}&per_page=1"
     return api(url).get("total_count", 0)
 
 
-def build_stats(repos, agg):
-    year = datetime.now(timezone.utc).year
+def build_stats(agg):
+    now = datetime.now(timezone.utc)
+    week_ago = (now - timedelta(days=7)).strftime("%Y-%m-%d")
     rows = [
         ("languages", str(len(agg))),
         ("Σ code", fmt_bytes(sum(agg.values()))),
-        (f"commits {year}", str(search_count("commits", f"author:{USER} committer-date:>={year}-01-01"))),
+        (f"commits {now.year}", str(search_count("commits", f"author:{USER} committer-date:>={now.year}-01-01"))),
         ("PRs", str(search_count("issues", f"type:pr author:{USER}"))),
-        ("last push", rel_push(repos)),
+        ("commits 7d", str(search_count("commits", f"author:{USER} committer-date:>={week_ago}"))),
     ]
     lines = []
     for i, (label, val) in enumerate(rows):
@@ -185,7 +168,7 @@ def main():
         print("no languages found, leaving languages unchanged")
 
     try:
-        svg = replace_marker(svg, "STATS", build_stats(repos, agg))
+        svg = replace_marker(svg, "STATS", build_stats(agg))
         print("updated stats panel")
     except NET_ERRORS as e:
         print(f"failed to build stats ({e}); leaving stats unchanged")
