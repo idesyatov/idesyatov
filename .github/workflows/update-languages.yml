@@ -2,12 +2,11 @@ name: Update language stats
 
 on:
   schedule:
-    - cron: "0 3 * * 1"   # every Monday at 03:00 UTC
+    - cron: "0 3 * * *"   # daily at 03:00 UTC
   workflow_dispatch: {}     # manual run from the Actions tab
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: update-languages
@@ -18,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Generate language block
         env:
@@ -33,6 +32,3 @@ jobs:
           git add assets/terminal.svg
           git diff --staged --quiet || git commit -m "chore: update language stats"
           git push
-
-      - name: Keepalive
-        uses: gautamkrishnar/keepalive-workflow@v2
