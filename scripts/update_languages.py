@@ -176,6 +176,9 @@ def main():
     except NET_ERRORS as e:
         print(f"failed to build stats ({e}); leaving stats unchanged")
 
+    stamp = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    svg = replace_marker(svg, "UPDATED", "updated " + stamp)
+
     if svg != original:
         with open(SVG, "w", encoding="utf-8") as f:
             f.write(svg)

@@ -70,4 +70,7 @@
   <rect x="200" y="508" width="9" height="16" fill="#c0caf5">
     <animate attributeName="opacity" values="1;1;0;0" dur="1.1s" repeatCount="indefinite"/>
   </rect>
+
+  <!-- updated stamp -->
+  <text x="796" y="521" text-anchor="end" font-size="11" fill="#414868"><!-- UPDATED:START -->updated 2026-06-26<!-- UPDATED:END --></text>
 </svg>
