@@ -13,6 +13,7 @@ import time
 import urllib.parse
 import urllib.request
 import urllib.error
+from xml.sax.saxutils import escape
 from datetime import datetime, timezone, timedelta
 
 USER = os.environ.get("GH_USER", "idesyatov")
@@ -46,7 +47,9 @@ DEFAULT = "#9aa5ce"
 def api(url):
     req = urllib.request.Request(url, headers={"Accept": "application/vnd.github+json",
                                                "User-Agent": "lang-stats"})
-    if TOKEN:
+    # only ever attach the token to api.github.com, so a redirect or an
+    # unexpected URL from the API cannot exfiltrate it to another host
+    if TOKEN and urllib.parse.urlparse(url).hostname == "api.github.com":
         req.add_header("Authorization", "Bearer " + TOKEN)
     for attempt in range(1, RETRIES + 1):
         try:
@@ -119,8 +122,8 @@ def build_stats(agg):
         y = Y0 + STEP * i
         lines.append(
             f'    <tspan x="{SX}" y="{y}">'
-            f'<tspan fill="#565f89">{label}</tspan>'
-            f'<tspan x="{SVALX}" fill="#c0caf5">{val}</tspan></tspan>'
+            f'<tspan fill="#565f89">{escape(label)}</tspan>'
+            f'<tspan x="{SVALX}" fill="#c0caf5">{escape(val)}</tspan></tspan>'
         )
     return "\n" + "\n".join(lines) + "\n"
 
@@ -135,7 +138,7 @@ def build_block(agg):
         fill = max(1, round(b * BAR / top))
         empty = BAR - fill
         color = COLORS.get(name, DEFAULT)
-        namep = name[:NAMEPAD].ljust(NAMEPAD)
+        namep = escape(name[:NAMEPAD].ljust(NAMEPAD))
         y = Y0 + STEP * i
         lines.append(
             f'    <tspan x="40" y="{y}">'
