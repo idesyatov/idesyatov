@@ -38,11 +38,11 @@
 
   <text x="40" font-size="15" xml:space="preserve">
 <!-- LANGS:START -->
-    <tspan x="40" y="300"><tspan fill="#c0caf5">Go         </tspan><tspan fill="#00ADD8">███████████████</tspan><tspan fill="#414868"></tspan><tspan fill="#565f89"> 72%</tspan></tspan>
+    <tspan x="40" y="300"><tspan fill="#c0caf5">Go         </tspan><tspan fill="#00ADD8">███████████████</tspan><tspan fill="#414868"></tspan><tspan fill="#565f89"> 69%</tspan></tspan>
     <tspan x="40" y="324"><tspan fill="#c0caf5">TypeScript </tspan><tspan fill="#3178c6">██</tspan><tspan fill="#414868">░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 8%</tspan></tspan>
     <tspan x="40" y="348"><tspan fill="#c0caf5">Shell      </tspan><tspan fill="#89e051">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
-    <tspan x="40" y="372"><tspan fill="#c0caf5">Rust       </tspan><tspan fill="#dea584">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 6%</tspan></tspan>
-    <tspan x="40" y="396"><tspan fill="#c0caf5">Nix        </tspan><tspan fill="#9aa5ce">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 4%</tspan></tspan>
+    <tspan x="40" y="372"><tspan fill="#c0caf5">Rust       </tspan><tspan fill="#dea584">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 5%</tspan></tspan>
+    <tspan x="40" y="396"><tspan fill="#c0caf5">Nix        </tspan><tspan fill="#9aa5ce">█</tspan><tspan fill="#414868">░░░░░░░░░░░░░░</tspan><tspan fill="#565f89"> 3%</tspan></tspan>
 <!-- LANGS:END -->
   </text>
 
@@ -50,10 +50,10 @@
   <text x="430" font-size="15" xml:space="preserve">
 <!-- STATS:START -->
     <tspan x="430" y="300"><tspan fill="#565f89">languages</tspan><tspan x="620" fill="#c0caf5">13</tspan></tspan>
-    <tspan x="430" y="324"><tspan fill="#565f89">Σ code</tspan><tspan x="620" fill="#c0caf5">705 KB</tspan></tspan>
-    <tspan x="430" y="348"><tspan fill="#565f89">commits 2026</tspan><tspan x="620" fill="#c0caf5">133</tspan></tspan>
+    <tspan x="430" y="324"><tspan fill="#565f89">Σ code</tspan><tspan x="620" fill="#c0caf5">760 KB</tspan></tspan>
+    <tspan x="430" y="348"><tspan fill="#565f89">commits 2026</tspan><tspan x="620" fill="#c0caf5">160</tspan></tspan>
     <tspan x="430" y="372"><tspan fill="#565f89">PRs</tspan><tspan x="620" fill="#c0caf5">55</tspan></tspan>
-    <tspan x="430" y="396"><tspan fill="#565f89">commits 7d</tspan><tspan x="620" fill="#c0caf5">77</tspan></tspan>
+    <tspan x="430" y="396"><tspan fill="#565f89">commits 7d</tspan><tspan x="620" fill="#c0caf5">58</tspan></tspan>
 <!-- STATS:END -->
   </text>
 
@@ -72,5 +72,5 @@
   </rect>
 
   <!-- updated stamp -->
-  <text x="796" y="521" text-anchor="end" font-size="11" fill="#414868"><!-- UPDATED:START -->updated 2026-06-26<!-- UPDATED:END --></text>
+  <text x="796" y="521" text-anchor="end" font-size="11" fill="#414868"><!-- UPDATED:START -->updated 2026-06-29<!-- UPDATED:END --></text>
 </svg>
