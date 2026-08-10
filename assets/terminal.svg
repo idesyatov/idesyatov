@@ -53,7 +53,7 @@
     <tspan x="430" y="324"><tspan fill="#565f89">Σ code</tspan><tspan x="620" fill="#c0caf5">1.4 MB</tspan></tspan>
     <tspan x="430" y="348"><tspan fill="#565f89">commits 2026</tspan><tspan x="620" fill="#c0caf5">304</tspan></tspan>
     <tspan x="430" y="372"><tspan fill="#565f89">PRs</tspan><tspan x="620" fill="#c0caf5">56</tspan></tspan>
-    <tspan x="430" y="396"><tspan fill="#565f89">commits 7d</tspan><tspan x="620" fill="#c0caf5">52</tspan></tspan>
+    <tspan x="430" y="396"><tspan fill="#565f89">commits 7d</tspan><tspan x="620" fill="#c0caf5">0</tspan></tspan>
 <!-- STATS:END -->
   </text>
 
@@ -72,5 +72,5 @@
   </rect>
 
   <!-- updated stamp -->
-  <text x="796" y="521" text-anchor="end" font-size="11" fill="#414868"><!-- UPDATED:START -->updated 2026-08-03<!-- UPDATED:END --></text>
+  <text x="796" y="521" text-anchor="end" font-size="11" fill="#414868"><!-- UPDATED:START -->updated 2026-08-10<!-- UPDATED:END --></text>
 </svg>
